@@ -15,7 +15,6 @@ public class FilmeService {
 	@Autowired
 	private FilmeDAO dao;
 	
-	@Transactional
 	public Filme buscarFilme(int id) throws IOException{
 		return dao.buscarFilme(id);
 	}
@@ -26,15 +25,23 @@ public class FilmeService {
 		filme.setId(id);
 		return filme;
 	}
-	
-	@Transactional
+
 	public List<Filme> listarFilmes(String chave) throws IOException{
 		return dao.listarFilmes(chave);
 	}
-	
-	@Transactional
+
 	public List<Filme> listarFilmes() throws IOException{
 		return dao.listarFilmes();
+	}
+	
+	@Transactional
+	public void atualizarFilme(Filme filme) throws IOException {
+		dao.atualizarFilme(filme);
+	}
+	
+	@Transactional
+	public void excluirFilme(int id) throws IOException {
+		dao.excluirFilme(id);
 	}
 
 }

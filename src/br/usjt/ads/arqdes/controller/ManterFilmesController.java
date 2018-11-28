@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.usjt.ads.arqdes.model.entity.Filme;
 import br.usjt.ads.arqdes.model.entity.Genero;
-import br.usjt.ads.arqdes.model.entity.Usuario;
 import br.usjt.ads.arqdes.model.service.FilmeService;
 import br.usjt.ads.arqdes.model.service.GeneroService;
-import br.usjt.ads.arqdes.model.service.UsuarioService;
 
 @Controller
 public class ManterFilmesController {
@@ -26,8 +24,6 @@ public class ManterFilmesController {
 	private FilmeService fService;
 	@Autowired
 	private GeneroService gService;
-	@Autowired
-	private UsuarioService uService;
 	
 	
 	@RequestMapping("/")
@@ -93,23 +89,6 @@ public class ManterFilmesController {
 			e.printStackTrace();
 			return "Erro";
 		}
-	}
-	
-	@RequestMapping("/tela_login")
-	public String telaLogin() {
-		return "TelaLogin";
-	}
-	
-	@RequestMapping("/fazer_login")
-	public String fazerLogin(Usuario usuario, HttpSession session) {
-		try {
-			usuario = uService.fazerLogin(usuario);
-			session.setAttribute("usuario", usuario);
-			return "redirect:/inicio";
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return "erro";
 	}
 }
 

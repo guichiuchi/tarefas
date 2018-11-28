@@ -13,7 +13,5 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="D:/EclipseWorkspace/sixteam/WebContent/WEB-INF/lib/spring-tx-4.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="D:/EclipseWorkspace/sixteam/WebContent/WEB-INF/lib/jboss-transaction-api_1.2_spec-1.0.0.Final.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

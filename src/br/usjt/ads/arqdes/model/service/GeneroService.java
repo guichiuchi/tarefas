@@ -1,8 +1,6 @@
 package br.usjt.ads.arqdes.model.service;
 
 import java.io.IOException;
-
-import javax.transaction.Transactional;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +13,10 @@ public class GeneroService {
 	@Autowired
 	private GeneroDAO dao;
 	
-	@Transactional
 	public Genero buscarGenero(int id) throws IOException {
 		return dao.buscarGenero(id);
 	}
 	
-	@Transactional
 	public List<Genero> listarGeneros() throws IOException{
 		return dao.listarGeneros();
 	}

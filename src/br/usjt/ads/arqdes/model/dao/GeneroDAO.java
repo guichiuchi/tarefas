@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,6 @@ import br.usjt.ads.arqdes.model.entity.Genero;
 
 @Repository
 public class GeneroDAO {
-	
 	@PersistenceContext
 	EntityManager manager;
 
@@ -23,7 +21,22 @@ public class GeneroDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Genero> listarGeneros() throws IOException {
-		Query query = manager.createQuery("select g from Genero");
-		return query.getResultList();
+		return manager.createQuery("select g from Genero g").getResultList();
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
