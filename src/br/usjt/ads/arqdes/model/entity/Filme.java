@@ -2,7 +2,6 @@ package br.usjt.ads.arqdes.model.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,11 +14,12 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name="Filme")
 public class Filme {
 	@Id
-	@Column(name="id")
 	@NotNull
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -29,12 +29,14 @@ public class Filme {
 	@Size(max=4000)
 	private String descricao;
 	private double popularidade;
+	@JsonFormat(pattern="dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dataLancamento;
-	@Size(max=2000)
+	@Size(max=200)
 	private String posterPath;
 	@Size(max=60)
 	private String diretor;
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="id_genero")
 	private Genero genero;

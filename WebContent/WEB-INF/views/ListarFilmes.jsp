@@ -75,6 +75,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Capa</th>
                                     <th>Título</th>
                                     <th>Direção</th>
                                     <th>Lançamento</th>
@@ -87,6 +88,9 @@
                                        <tr>
                                             <td>
                                                ${filme.id }
+                                            </td>
+                                            <td>
+                                            	<img src="img/${filme.posterPath}" class="img img-fluid img-thumbnail" style="width: 70px; height: 90px;" alt="" />
                                             </td>
                                             <td>
                                                 ${filme.titulo }

@@ -24,19 +24,3 @@ public class GeneroDAO {
 		return manager.createQuery("select g from Genero g").getResultList();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
