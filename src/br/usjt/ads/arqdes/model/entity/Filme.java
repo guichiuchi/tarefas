@@ -2,8 +2,17 @@ package br.usjt.ads.arqdes.model.entity;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table(name="filme")
 public class Filme {
 	private int id;
+	@NotNull
+	@Size(max=100, min=2, message="O título do filme deve ter pelo menos 2 caracteres.")
 	private String titulo;
 	private String descricao;
 	private double popularidade;

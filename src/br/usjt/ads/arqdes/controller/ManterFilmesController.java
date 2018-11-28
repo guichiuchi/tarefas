@@ -1,14 +1,17 @@
 package br.usjt.ads.arqdes.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.usjt.ads.arqdes.model.entity.Filme;
 import br.usjt.ads.arqdes.model.entity.Genero;
@@ -26,10 +29,6 @@ public class ManterFilmesController {
 	@Autowired
 	private UsuarioService uService;
 	
-	public ManterFilmesController() {
-		fService = new FilmeService();
-		gService = new GeneroService();
-	}
 	
 	@RequestMapping("/")
 	public String inicio() {
@@ -50,7 +49,7 @@ public class ManterFilmesController {
 	@RequestMapping("/novo_filme")
 	public String novoFilme(HttpSession session) {
 		try {
-			ArrayList<Genero> generos = gService.listarGeneros();
+			List<Genero> generos = gService.listarGeneros();
 			session.setAttribute("generos", generos);
 			return "CriarFilme";
 		} catch (IOException e) {
@@ -60,19 +59,40 @@ public class ManterFilmesController {
 	}
 	
 	@RequestMapping("/inserir_filme")
-	public String inserirFilme(Filme filme, Model model) {
+	public String inserirFilme(@Valid Filme filme, BindingResult result, Model model) {
 		try {
-			Genero genero = gService.buscarGenero(filme.getGenero().getId());
-			filme.setGenero(genero);
-			model.addAttribute("filme", filme);
-			fService.inserirFilme(filme);
-			return "VisualizarFilme";
+			if(!result.hasFieldErrors("titulo")) {
+				Genero genero = gService.buscarGenero(filme.getGenero().getId());
+				filme.setGenero(genero);
+				model.addAttribute("filme", filme);
+				fService.inserirFilme(filme);
+				return "VisualizarFilme";
+			} else {
+				return "CriarFilme";
+			}
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "index";
+	}
+
+	@RequestMapping("/buscar_filmes")
+	public String buscarFilmes(HttpSession session, @RequestParam String chave){
+		try {
+			List<Filme> lista;
+			if (chave != null && chave.length() > 0) {
+				lista = fService.listarFilmes(chave);
+			} else {
+				lista = fService.listarFilmes();
+			}
+			session.setAttribute("lista", lista);
+			return "ListarFilmes";
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "Erro";
+		}
 	}
 	
 	@RequestMapping("/tela_login")
@@ -91,7 +111,6 @@ public class ManterFilmesController {
 		}
 		return "erro";
 	}
-
 }
 
 

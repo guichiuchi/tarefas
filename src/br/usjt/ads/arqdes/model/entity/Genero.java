@@ -1,5 +1,10 @@
 package br.usjt.ads.arqdes.model.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="filme")
 public class Genero {
 	private int id;
 	private String nome;
