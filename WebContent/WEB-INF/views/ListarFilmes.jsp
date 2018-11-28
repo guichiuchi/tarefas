@@ -29,7 +29,7 @@
                             Deseja realmente excluir este filme?
                         </div>
                         <div class="modal-footer">
-                            <form action="excluir_filme" method="post">
+                            <form action="excluir" method="post">
                                 <input type="hidden" name="id" id="id_excluir" />
                                 <button type="submit" class="btn btn-primary" name="acao" value="Excluir">Sim</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
@@ -51,7 +51,7 @@
 
                         <div class="col-md-6">
                             <div class="input-group h2">
-                                <input name="chave" class="form-control" id="search" type="text" placeholder="Pesquisar Filmes (deixe vazio para trazer todos)">
+                                <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Filmes (deixe vazio para trazer todos)">
                                 <span class="input-group-btn">
                 <button class="btn btn-primary" type="submit" name="acao" value="listar">
                     <span class="glyphicon glyphicon-search"></span>
@@ -71,7 +71,7 @@
                 <div id="list" class="row">
 
                     <div class="table-responsive col-md-12">
-                        <table class="table table-striped">
+                        <table class="table table-striped" cellspacing="0" cellpadding="0">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -101,9 +101,9 @@
                                                 ${filme.genero.nome}
                                             </td>
                                             <td class="actions">
-                                           		<a class="btn btn-success btn-xs" href="visualizar_filme?id=${filme.id}">Visualizar</a>
-                                                <a class="btn btn-warning btn-xs" href="editar_filme?id=${filme.id}">Editar</a>
-                                                <button id="btn${filme.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-filme="${filme.id}">Excluir</button>
+                                                <a class="btn btn-success btn-xs" href="manterfilmes.do?acao=visualizar&id=${filme.id}">Visualizar</a>
+                                                <a class="btn btn-warning btn-xs" href="manterfilmes.do?acao=editar&id=${filme.id}">Editar</a>
+                                                <button id="btn${filme.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-filme="${filme.id }">Excluir</button>
                                             </td>
                                         </tr>
                             </c:forEach>

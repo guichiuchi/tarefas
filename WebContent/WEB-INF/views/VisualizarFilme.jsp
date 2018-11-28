@@ -28,7 +28,7 @@
                                 Deseja realmente excluir este filme?
                             </div>
                             <div class="modal-footer">
-                                <form action="excluir_filme" method="post">
+                                <form action="manterfilmes.do" method="post">
                                     <input type="hidden" name="id" value="${filme.id}" />
                                     <button type="submit" class="btn btn-primary" name="acao" value="Excluir">Sim</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
@@ -79,9 +79,9 @@
 		<hr />
 		<div id="actions" class="row">
 			<div class="col-md-12">
-				<a href="editar_filme?id=${filme.id}" class="btn btn-primary">Editar</a> 
+				<a href="manterfilmes.do?acao=editar&id=${filme.id}" class="btn btn-primary">Editar</a> 
 				<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal">Excluir</a> 
-				<a href="listar_filmes" class="btn btn-default">Voltar</a>
+				<a href="ListarFilmes.jsp" class="btn btn-default">Voltar</a>
 			</div>
 		</div>
 	</div>
