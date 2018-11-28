@@ -54,4 +54,27 @@ public class GeneroDAO {
 		}
 		return generos;
 	}
+	
+	public ArrayList<Genero> buscarGenerosFilmes() throws IOException {
+		ArrayList<Genero> generos = new ArrayList<>();
+		String sql = "select distinct g.id, g.nome, f.id_genero from genero g, filme f where g.id = f.id_genero;";
+
+		try (Connection conn = ConnectionFactory.getConnection();
+				PreparedStatement pst = conn.prepareStatement(sql);
+				ResultSet rs = pst.executeQuery();) {
+
+			while (rs.next()) {
+				Genero genero = new Genero();
+				genero.setId(rs.getInt("g.id"));
+				genero.setNome(rs.getString("g.nome"));
+				generos.add(genero);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new IOException(e);
+		}
+		return generos;
+	}
+	
+	
 }

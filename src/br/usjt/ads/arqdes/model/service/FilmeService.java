@@ -17,24 +17,32 @@ public class FilmeService {
 		return dao.buscarFilme(id);
 	}
 	
+	public void excluirFilme(int id) throws IOException {
+		dao.excluirFilme(id);
+	}
+	
 	public Filme inserirFilme(Filme filme) throws IOException {
 		int id = dao.inserirFilme(filme);
 		filme.setId(id);
 		return filme;
 	}
-
-	public int excluirFilme(int id) throws IOException {
-		return dao.excluirFilme(id);
-	}
 	
-	public Filme atualizarFilme(Filme filme) throws IOException {
-		int id = dao.atualizarFilme(filme);
+	public Filme alterarFilme(Filme filme) throws IOException {
+		int id = dao.alterarFilme(filme);
 		filme.setId(id);
 		return filme;
 	}
+
+	public ArrayList<Filme> listarFilmes(String chave) throws IOException{
+		return dao.listarFilmes(chave);
+	}
+
+	public ArrayList<Filme> listarFilmes() throws IOException{
+		return dao.listarFilmes();
+	}
 	
-	public ArrayList<Filme> buscarFilmes() throws IOException {
-		return dao.buscarFilmes();
+	public ArrayList<Filme> listarFilmesData() throws IOException{
+		return dao.listarFilmesData();
 	}
 
 }
